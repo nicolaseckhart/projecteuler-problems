@@ -10,7 +10,7 @@ class Problem5
     print_problem
     result = nil
     DIVISIBLE_MAX.step do |i|
-      next unless i % 2 == 0
+      next unless i.even?
       next unless i % 3 == 0
       next unless i % 4 == 0
       next unless i % 5 == 0
