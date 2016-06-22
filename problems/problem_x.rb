@@ -3,10 +3,9 @@ class ProblemX
   DESCRIPTION = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo vitae eros non egestas.'.freeze
 
   def solve
-    print_problem
-    # LOGIC HERE
-    result = 'foobar'
-    print_result(result)
+    # print_problem
+    # CODE HERE
+    # print_result('foobar')
   end
 
   def print_problem
