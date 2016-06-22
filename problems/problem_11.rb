@@ -38,36 +38,37 @@ class Problem11
   end
 
   def largest_product_horizontally
-    potential_series = GRID.map do |row|
+    potential_products = []
+    GRID.each do |row|
       (0..19).each do |i|
-        row[i..i + 3]
+        potential_products << row[i..i + 3].inject(:*)
       end
     end
-    potential_series.inject(:*).max
+    potential_products.max
   end
 
   # rubocop:disable all
   def largest_product_vertically
-    potential_series = []
+    potential_products = []
     GRID.each_with_index do |row, index|
       next if GRID[index + 3].nil?
       (0..19).each do |i|
-        potential_series << [row[i], GRID[index + 1][i], GRID[index + 2][i], GRID[index + 3][i]].inject(:*)
+        potential_products << [row[i], GRID[index + 1][i], GRID[index + 2][i], GRID[index + 3][i]].inject(:*)
       end
     end
-    potential_series.inject(:*).max
+    potential_products.max
   end
 
   def largest_product_diagonally_ltr
-    potential_series = []
+    potential_products = []
     GRID.each_with_index do |row, index|
       next if GRID[index + 3].nil?
       (0..19).each do |i|
         break if GRID[index + 3][i + 3].nil?
-        potential_series << [row[i], GRID[index + 1][i + 1], GRID[index + 2][i + 2], GRID[index + 3][i + 3]].inject(:*)
+        potential_products << [row[i], GRID[index + 1][i + 1], GRID[index + 2][i + 2], GRID[index + 3][i + 3]].inject(:*)
       end
     end
-    potential_series.inject(:*).max
+    potential_products.max
   end
 
   def largest_product_diagonally_rtl
@@ -79,7 +80,7 @@ class Problem11
         potential_series << [row[i], GRID[index + 1][i - 1], GRID[index + 2][i - 2], GRID[index + 3][i - 3]].inject(:*)
       end
     end
-    potential_series.inject(:*).max
+    potential_series.max
   end
   # rubocop:enable all
 
