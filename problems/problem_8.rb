@@ -18,8 +18,8 @@ class Problem8
 
   def solve
     print_problem
-    potential_series = soup_as_array.each_with_index.map do |n, i|
-      soup_as_array[i..i+(DIGITS-1)]
+    potential_series = soup_as_array.each_with_index.map do |_n, i|
+      soup_as_array[i..i + (DIGITS - 1)]
     end
     result = largest_product(potential_series)
     print_result(result)
@@ -39,7 +39,7 @@ class Problem8
   end
 
   def clean_array(array)
-    array.map{ |a| a unless a.include?(0) }.compact
+    array.map { |a| a unless a.include?(0) }.compact
   end
 
   def print_problem

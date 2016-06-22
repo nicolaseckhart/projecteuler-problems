@@ -8,9 +8,9 @@ class Problem9
   def solve
     print_problem
     (1..MAXIMUM).each do |a|
-      (a+1..MAXIMUM).each do |b|
+      (a + 1..MAXIMUM).each do |b|
         c = MAXIMUM - a - b
-        next unless a ** 2 + b ** 2 == c ** 2
+        next unless a**2 + b**2 == c**2
         print_result(a * b * c)
       end
     end
