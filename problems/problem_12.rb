@@ -11,29 +11,36 @@ class Problem12
                 "e first triangle number to have over five divisors.\nWhat is the value of the fi"\
                 "rst triangle number to have over five hundred divisors?\n".freeze
 
+  def initialize
+    @triangle_number, @cache = nil
+  end
+
   def solve
     print_problem
-    triangle_number, cache = nil
-    1.step do |i|
-      # This caching saves about 4 - 5 seconds with 500 divisors
-      if cache.nil?
-        cache = (1..i).inject(:+)
-        triangle_number = cache
-      else
-        triangle_number = (cache + i)
-        cache = triangle_number
-      end
-      break if divisors(triangle_number).count > NUMBER_OF_DIVISORS
+    1.step do |num|
+      cache_triangle_number(num)
+      break if divisors(@triangle_number).count > NUMBER_OF_DIVISORS
     end
-    print_result(triangle_number)
+    print_result(@triangle_number)
+  end
+
+  def cache_triangle_number(step)
+    # This caching saves about 4 - 5 seconds with 500 divisors
+    if @cache.nil?
+      @cache = (1..step).inject(:+)
+      @triangle_number = @cache
+    else
+      @triangle_number = (@cache + step)
+      @cache = @triangle_number
+    end
   end
 
   def divisors(number)
     return [] if number.odd?
     primes, powers = number.prime_division.transpose
     exponents = powers.map { |i| (0..i).to_a }
-    divisors = exponents.shift.product(*exponents).map do |powers|
-      primes.zip(powers).map { |prime, power| prime**power }.inject(:*)
+    divisors = exponents.shift.product(*exponents).map do |p|
+      primes.zip(p).map { |prime, power| prime**power }.inject(:*)
     end
     divisors.sort
   end
