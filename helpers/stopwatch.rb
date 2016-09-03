@@ -2,7 +2,7 @@ class Stopwatch
   attr_accessor :start_time
 
   def time_box_block
-    @start_time = Time.now
+    start
     yield
     stop
   end
